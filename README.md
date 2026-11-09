@@ -6,7 +6,7 @@
 
 Estoy terminando Ingeniería de Sistemas y Computación en la Universidad de los Andes y hago el coterminal de la Maestría en Ingeniería de Software. Me gusta construir el sistema completo: el motor que hace el trabajo difícil (un grafo de agentes, un solver de óptica, un raycaster) y la interfaz que lo vuelve fácil de usar. Después lo pruebo de punta a punta, porque si no tiene pruebas no está terminado.
 
-- **Ahora mismo:** mi proyecto de grado, una suite end-to-end para el sistema de ajuste de horario de Uniandes.
+- **Ahora mismo:** cerrando el último semestre y el coterminal en la MISO.
 - **Lo que más disfruto:** agentes de IA que delegan y se revisan entre sí, y herramientas para que otros aprendan a programar.
 - **Cómo trabajo:** arquitectura limpia, decisiones escritas y CI en verde antes de entregar.
 
@@ -42,7 +42,7 @@ Estoy terminando Ingeniería de Sistemas y Computación en la Universidad de los
 
 ### Este semestre · 2026-20
 
-<img src="assets/semester.jpg" width="100%" alt="Este semestre: proyecto de grado (suite end-to-end de AjHA con Kraken y Gherkin, con un escenario real), coterminal MISO (construcción de agentes y LLM) y ciberseguridad (aseguramiento de servidores).">
+<img src="assets/semester.jpg" width="100%" alt="Este semestre: coterminal MISO (construcción de agentes y LLM) y ciberseguridad (aseguramiento de servidores).">
 
 <br>
 

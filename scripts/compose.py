@@ -9,7 +9,6 @@ Run: python scripts/compose.py && node scripts/render.mjs
 
 import html
 import pathlib
-import re
 import shutil
 
 from PIL import Image
@@ -19,7 +18,6 @@ DOCS = pathlib.Path("C:/Users/ajpp2/Documents")
 PORT = DOCS / "Proyectos/Personales/portafolio/public/projects"
 SHOTS = ROOT / ".preview/shots"
 SLIDES = DOCS / "Universidad/Agentes MISW4412/Presentacion-Entrega-Final-Semana8/diapositivas_png"
-GHERKIN = DOCS / "Proyectos/Universidad/AjHA-Kraken/features/individual/student/AJHA-005.feature"
 FRAMES = ROOT / ".preview/frames"
 RENDER = ROOT / ".preview/render"
 
@@ -95,7 +93,7 @@ h2{font-weight:500;letter-spacing:-.035em;margin:0}
 
 HEAD = ('<!doctype html><html><head><meta charset="utf-8">'
         '<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500'
-        '&family=JetBrains+Mono:wght@400&display=block" rel="stylesheet">'
+        '&display=block" rel="stylesheet">'
         '<style>{css}</style></head><body>{body}</body></html>')
 
 e = html.escape
@@ -169,52 +167,20 @@ h2{font-size:28px;line-height:1;margin-bottom:14px}
         page(f"card-{slug}", body, css)
 
 
-def gherkin_html():
-    out = []
-    lines = GHERKIN.read_text(encoding="utf-8").splitlines()
-    start = next(i for i, l in enumerate(lines) if l.strip().startswith("@"))
-    for line in lines[start:]:
-        line = line[2:]
-        if not line.strip():
-            out.append("")
-            continue
-        s = e(line)
-        s = re.sub(r"^(\s*)(Feature:|Scenario:|Given|When|Then|And)",
-                   r'\1<b>\2</b>', s)
-        s = re.sub(r"(@\w+)", r'<i>\1</i>', s)
-        out.append(s)
-    return "\n".join(out)
-
-
 def semester():
     cols = "".join(
         f'<div><p class="muted">{e(k)}</p><h3>{e(t)}</h3><p>{e(d)}</p><p class="muted tag">{e(g)}</p></div>'
         for k, t, d, g in SEMESTER)
     body = f"""<div class="frame sem">
-  <div class="grado">
-    <div><p class="muted">Proyecto de grado</p><h2>Suite end-to-end de AjHA</h2>
-      <p>AjHA es el sistema con el que los estudiantes de Uniandes ajustan su horario. Escribí más de 90
-      escenarios en Gherkin que lo recorren como un estudiante y como administrador: inscripción,
-      correquisitos, créditos y solicitudes. Los va a mantener el equipo de QA de la Vicerrectoría
-      de Transformación Digital.</p>
-      <p class="muted tag">Kraken, WebdriverIO, Gherkin, Node.js</p></div>
-    <pre>{gherkin_html()}</pre>
-  </div>
   <div class="cols">{cols}</div>
 </div>"""
     css = """
 .sem{width:1000px;padding:40px 36px 40px}
-.grado{display:grid;grid-template-columns:1fr 1.3fr;gap:32px;align-items:start}
-.sem h2{font-size:36px;line-height:1;margin:8px 0 18px}
 .sem h3{font-weight:500;font-size:24px;letter-spacing:-.02em;margin:8px 0 12px}
 .sem p{font-size:16.5px;line-height:1.5}
 .sem p.muted:first-child{font-size:16px}
 .tag{margin-top:14px;font-size:14.5px}
-pre{margin:0;background:var(--surface);padding:22px 24px;font:12px/1.7 'JetBrains Mono',monospace;
-  color:var(--ink);white-space:pre-wrap}
-pre b{font-weight:400;color:var(--accent)}
-pre i{font-style:normal;color:var(--muted)}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:40px}
 """
     page("semester", body, css)
 
